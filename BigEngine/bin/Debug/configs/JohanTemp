@@ -1,0 +1,92 @@
+#include <iostream>
+class BinaryNode {
+public:
+	BinaryNode(int value) {
+		Data = value;
+	}
+private:
+	int Data;
+	BinaryNode* LeftNode = nullptr;
+	BinaryNode* RightNode = nullptr;
+public:
+	int GetValue() {
+		return Data;
+	}
+	BinaryNode* Insert(int value) {
+		if (Data > value) {
+			if (LeftNode == nullptr)
+				return LeftNode = new BinaryNode(value);
+			
+			return LeftNode->Insert(value);
+		}
+		else if (Data < value) {
+			if (RightNode == nullptr)
+				return RightNode = new BinaryNode(value);
+			
+			return RightNode->Insert(value);
+		}
+
+		return this;
+	}
+	BinaryNode* GetMin() {
+		if(LeftNode == nullptr)
+			return this;
+		else
+			return LeftNode->GetMin();
+	}
+	BinaryNode* GetMax() {
+		if (RightNode == nullptr)
+			return this;
+		else
+			return RightNode->GetMin();
+	}
+	bool Contains(int value) {
+		if(Data == value) return true;
+
+		if (Data > value) {
+			if (LeftNode == nullptr)
+				return false;
+
+			return LeftNode->Contains(value);
+		}
+		else if (Data < value) {
+			if (RightNode == nullptr)
+				return false;
+
+			return RightNode->Contains(value);
+		}		
+	}
+	BinaryNode* Remove(BinaryNode* node) {		
+		if (node == nullptr)
+			return node;
+		
+		if (Data > node->GetValue()) 
+			return LeftNode = LeftNode->Remove(node);
+		
+		else if (Data < node->GetValue()) 
+			return RightNode = RightNode->Remove(node);
+
+
+		if (LeftNode != nullptr && RightNode != nullptr) {
+			Data = RightNode->GetMin()->Data;
+			RightNode = RightNode->Remove(node->RightNode);
+		}
+		else
+			node = (LeftNode != nullptr) ? LeftNode : RightNode;
+		
+		return node;
+	}
+};
+
+int main()
+{
+	BinaryNode* Treeroot = new BinaryNode(6);
+	Treeroot->Insert(3);
+	BinaryNode* nodeToRemove = Treeroot->Insert(4);
+	 Treeroot->Insert(5);
+	Treeroot->Insert(1);
+	std::cout << (Treeroot->Contains(4) > 0 ? "True" : "False");
+	Treeroot->Remove(nodeToRemove);
+	std::cout << (Treeroot->Contains(4) > 0 ? "True" : "False");
+	std::cin.get();
+}
