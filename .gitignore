@@ -5,3 +5,6 @@ BigEnigne/bin/Debug/intermidates/
 BigEnigne/bin/Debug/logs/*.*
 BigEnigne/bin/Realease/intermidates/
 BigEnigne/bin/Realease/intermidates/
+*.pdb
+*.ilk
+*.exe
