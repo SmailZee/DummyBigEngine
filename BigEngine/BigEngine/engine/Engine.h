@@ -5,6 +5,7 @@
 namespace Big
 {
 	class Window;
+	class ShaderProgram;
 
 	class Engine
 	{
@@ -18,8 +19,10 @@ namespace Big
 
 	private:
 		Window* window = nullptr;
-
+		ShaderProgram* shaderProgram = nullptr;
 		const std::string logPath = "./logs/";
 		const std::string engineLog = "Engine.txt";
+		const std::string defaultVertexShader = "./data/shaders/default.vert";
+		const std::string defaultFragmentShader = "./data/shaders/default.frag";
 	};
 }

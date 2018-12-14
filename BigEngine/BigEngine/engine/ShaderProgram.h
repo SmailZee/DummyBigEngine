@@ -19,7 +19,7 @@ namespace Big
 
 	private:
 		unsigned int handle;
-		bool CheckShadeError(unsigned int shader);
+		bool CheckShaderError(unsigned int shader);
 		bool CheckProgramError();
 
 	};
